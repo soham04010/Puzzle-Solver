@@ -1,7 +1,7 @@
 const gridSize = 3;
 let selectedPiece = null;
 
-// Example pieces (top, right, bottom, left)
+
 const pieces = [
     ['+', '-', '*', '/'],
     ['*', '+', '/', '-'],
@@ -14,33 +14,32 @@ const pieces = [
     ['*', '-', '/', '+']
 ];
 
-// Rotate a piece 90 degrees
+
 function rotatePiece(piece) {
     return [piece[3], piece[0], piece[1], piece[2]];
 }
 
-// Check if a piece fits at position (row, col)
 function isValidPlacement(grid, row, col, piece) {
     if (row > 0 && grid[row - 1][col]) {
-        if (grid[row - 1][col][2] !== piece[0]) return false; // Top-Bottom match
+        if (grid[row - 1][col][2] !== piece[0]) return false; 
     }
     if (col > 0 && grid[row][col - 1]) {
-        if (grid[row][col - 1][1] !== piece[3]) return false; // Left-Right match
+        if (grid[row][col - 1][1] !== piece[3]) return false; 
     }
     return true;
 }
 
-// Solve puzzle using backtracking
+
 function solve(grid, used, row, col) {
-    if (row === gridSize) return true; // Puzzle filled!
+    if (row === gridSize) return true; 
 
     let nextRow = col === gridSize - 1 ? row + 1 : row;
     let nextCol = (col + 1) % gridSize;
 
     for (let i = 0; i < pieces.length; i++) {
-        if (used[i]) continue; // Skip already placed pieces
+        if (used[i]) continue; 
 
-        for (let r = 0; r < 4; r++) { // Try 4 rotations
+        for (let r = 0; r < 4; r++) { 
             let rotatedPiece = rotatePiece(pieces[i]);
             pieces[i] = rotatedPiece;
 
@@ -48,17 +47,17 @@ function solve(grid, used, row, col) {
                 grid[row][col] = rotatedPiece;
                 used[i] = true;
 
-                if (solve(grid, used, nextRow, nextCol)) return true; // Recursive call
+                if (solve(grid, used, nextRow, nextCol)) return true; 
 
                 used[i] = false;
-                grid[row][col] = null; // Backtrack
+                grid[row][col] = null; 
             }
         }
     }
     return false;
 }
 
-// Function to automatically solve and display solution
+
 function findSolution() {
     let grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(null));
     let used = Array(pieces.length).fill(false);
@@ -71,7 +70,7 @@ function findSolution() {
     }
 }
 
-// Display solved puzzle in grid with improved readability
+
 function displaySolution(grid) {
     const gridContainer = document.getElementById("grid");
     let index = 0;
@@ -91,7 +90,7 @@ function displaySolution(grid) {
 }
 
 
-// Create draggable puzzle pieces with user-friendly layout
+
 function createPuzzlePieces() {
     const puzzleContainer = document.getElementById("pieces");
     puzzleContainer.innerHTML = "";
@@ -109,13 +108,13 @@ function createPuzzlePieces() {
                 <span class="left">${piece[3]}</span>
             </div>`;
 
-        // Drag events
+        
         div.addEventListener("dragstart", (e) => {
             selectedPiece = index;
             e.dataTransfer.setData("text/plain", index);
         });
 
-        // Rotate on click
+        
         div.addEventListener("click", () => {
             pieces[index] = rotatePiece(pieces[index]);
             div.innerHTML = `
@@ -131,7 +130,7 @@ function createPuzzlePieces() {
     });
 }
 
-// Apply CSS for better visual clarity
+
 const style = document.createElement("style");
 style.innerHTML = `
     .piece {
@@ -174,7 +173,7 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// Initialize game
+
 window.onload = () => 
     createPuzzlePieces();
     setupGrid();
