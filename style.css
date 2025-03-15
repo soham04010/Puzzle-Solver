@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* Container for puzzle pieces */
+.pieces-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Individual puzzle piece */
+.piece {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.piece:hover {
+    transform: scale(1.1);
+    background: #e6e6e6;
+}
+
+/* Center part of the piece */
+.piece-center {
+    width: 30px;
+    height: 30px;
+    background: lightgray;
+    border-radius: 5px;
+}
+
+/* Positioning of arithmetic symbols */
+.piece-top,
+.piece-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.piece-top {
+    top: 5px;
+}
+
+.piece-bottom {
+    bottom: 5px;
+}
+
+.piece-left,
+.piece-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.piece-left {
+    left: 5px;
+}
+
+.piece-right {
+    right: 5px;
+}
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Grid cells */
+.grid-cell {
+    width: 80px;
+    height: 80px;
+    background: #f8f8f8;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Solve button */
+button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background-color: #0056b3;
+}
