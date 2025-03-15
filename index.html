@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Solver</title>
+    <title>Arithmetic Symbol Puzzle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Arithmetic Puzzle Solver</h1>
-
-    <h2>Drag & Drop the pieces into the grid</h2>
-
+    <h1>Arithmetic Symbol Puzzle</h1>
+    
     <div id="pieces" class="pieces-container"></div>
 
+    <h2>Drag the pieces into the grid:</h2>
     <div id="grid" class="grid-container"></div>
+
+    <div class="controls">
+        <button onclick="findSolution()">Solve Puzzle</button>
+        <p id="message"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
